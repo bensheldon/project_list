@@ -10,8 +10,8 @@ class ScreenshotService
     }
 
     # https://github.com/heroku/heroku-buildpack-google-chrome#selenium
-    chrome_binary = ENV.fetch('GOOGLE_CHROME_BIN', nil)
-    chrome_options['binary'] = chrome_binary if chrome_binary.present?
+    chrome_binary = ENV.fetch('GOOGLE_CHROME_SHIM', nil)
+    chrome_options[:binary] = chrome_binary if chrome_binary.present?
 
     driver_options = Selenium::WebDriver::Chrome::Options.new(chrome_options)
     driver = Selenium::WebDriver.for(:chrome, options: driver_options)
