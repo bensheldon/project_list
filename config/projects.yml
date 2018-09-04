@@ -7,4 +7,14 @@ panlexicon:
 project_list:
   url: "https://bensheldon-projectlist.herokuapp.com"
 printandshare:
-  url: "http://printandshare.org/"
+  url: "http://printandshare.org"
+civic_tech_patterns:
+  url: "https://github.com/codeforamerica/civic-tech-patterns"
+brompt:
+  url: "https://brompt.com"
+dayofthesock:
+  url: "https://dayofthesock.com"
+sheldoncalderon:
+  url: "http://sheldoncalderon.com"
+sflc:
+  url: "http://sflcsf.org/"
