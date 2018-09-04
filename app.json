@@ -7,6 +7,15 @@
     "postdeploy": "bin/rails heroku:postdeploy"
   },
   "env": {
+    "AWS_ACCESS_KEY_ID": {
+      "required": true
+    },
+    "AWS_S3_BUCKET_NAME": {
+      "required": true
+    },
+    "AWS_SECRET_ACCESS_KEY": {
+      "required": true
+    },
     "HEROKU_APP_NAME": {
       "required": true
     },
