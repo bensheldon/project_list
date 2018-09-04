@@ -24,7 +24,11 @@ class ScreenshotService
       driver.manage.window.resize_to(*MOBILE_DIMENSIONS)
     end
 
-    driver.save_screenshot(Rails.root.join('tmp', 'screenshots', "#{SecureRandom.uuid}.png"))
+    tempfile = Tempfile.new(["", ".png"])
+    driver.save_screenshot(tempfile.path)
+    tempfile
+  ensure
+    driver.close if driver
   end
 
   private
