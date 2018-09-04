@@ -1,0 +1,54 @@
+---
+version: 2
+jobs:
+  build:
+    working_directory: ~/project_list
+    docker:
+    - image: circleci/ruby:2.5.1-node-browsers
+      environment:
+        BUNDLE_JOBS: 4
+        BUNDLE_RETRY: 3
+        BUNDLE_PATH: vendor/bundle
+        PGHOST: localhost
+        PGUSER: project_list
+        RAILS_ENV: test
+    - image: circleci/postgres:10-postgis
+      environment:
+        POSTGRES_USER: project_list
+        POSTGRES_DB: project_list_test
+        POSTGRES_PASSWORD: ""
+    steps:
+    - checkout
+    - restore_cache:
+        keys:
+        - project_list-bundle-v1-{{ arch }}-{{ checksum "Gemfile.lock" }}
+        - project_list-bundle-v1-
+    - run: bundle check || bundle install --full-index
+    - save_cache:
+        key: project_list-bundle-v1-{{ arch }}-{{ checksum "Gemfile.lock" }}
+        paths:
+        - vendor/bundle
+    - restore_cache:
+        keys:
+        - project_list-yarn-v1-{{ arch }}-{{ checksum "yarn.lock" }}
+        - project_list-yarn-v1-
+    - run: yarn install
+    - save_cache:
+        key: project_list-yarn-v1-{{ arch }}-{{ checksum "yarn.lock" }}
+        paths:
+        - ~/.cache/yarn
+    # Wait for DB
+    - run: dockerize -wait tcp://localhost:5432 -timeout 1m
+    # Setup the database
+    - run: bin/rails db:test:prepare
+    # Precompile Assets
+    - run: bin/rails assets:precompile
+    # Create place to store test results
+    - run: mkdir ~/rspec
+    # Run the tests
+    - run: bundle exec rspec --format documentation --format RspecJunitFormatter -o ~/rspec/rspec.xml
+    - store_test_results:
+        path: ~/rspec
+    - store_artifacts:
+        path: tmp/screenshots
+        destination: screenshots

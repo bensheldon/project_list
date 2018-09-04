@@ -33,4 +33,9 @@ group :test do
   gem 'capybara'
   gem 'factory_bot_rails'
   gem 'launchy', require: false
+  gem 'rspec_junit_formatter'
+end
+
+group :production do
+  gem 'aws-sdk-s3', require: false
 end

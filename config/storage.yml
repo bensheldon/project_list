@@ -6,10 +6,10 @@ local:
   service: Disk
   root: <%= Rails.root.join("storage") %>
 
- amazon:
+amazon:
    service: S3
    access_key_id: <%= Rails.application.secrets.aws_secret_key_base %>
-   secret_access_key: <%= Rails.application.secrets.aws_secret_access.key %>
+   secret_access_key: <%= Rails.application.secrets.aws_secret_access_key %>
    region: us-east-1
    bucket: <%= Rails.application.secrets.aws_s3_bucket_name %>
 

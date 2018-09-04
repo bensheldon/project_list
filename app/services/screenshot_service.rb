@@ -5,7 +5,15 @@ class ScreenshotService
   MOBILE_DIMENSIONS = [375, 800]
 
   def call(url, device = :desktop)
-    driver_options = Selenium::WebDriver::Chrome::Options.new(args: ['headless'])
+    chrome_options = {
+      args: ['headless']
+    }
+
+    # https://github.com/heroku/heroku-buildpack-google-chrome#selenium
+    chrome_binary = ENV.fetch('GOOGLE_CHROME_SHIM', nil)
+    chrome_options[:binary] = chrome_binary if chrome_binary.present?
+
+    driver_options = Selenium::WebDriver::Chrome::Options.new(chrome_options)
     driver = Selenium::WebDriver.for(:chrome, options: driver_options)
 
     driver.navigate.to url
@@ -16,7 +24,11 @@ class ScreenshotService
       driver.manage.window.resize_to(*MOBILE_DIMENSIONS)
     end
 
-    driver.save_screenshot(Rails.root.join('tmp', 'screenshots', "#{SecureRandom.uuid}.png"))
+    tempfile = Tempfile.new(["", ".png"])
+    driver.save_screenshot(tempfile.path)
+    tempfile
+  ensure
+    driver.close if driver
   end
 
   private
