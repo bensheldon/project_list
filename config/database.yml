@@ -1,5 +1,5 @@
 defaults: &defaults
-  adapter: postgres
+  adapter: postgresql
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: <%= ENV['POSTGRES_USERNAME'] || ENV['USER'] %>
