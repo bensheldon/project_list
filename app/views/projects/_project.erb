@@ -1,2 +1,14 @@
-<%= project.slug %>
-<%= image_tag project.screenshots.first.desktop_image %>
+<div class="col-sm-3">
+  <div class="card">
+    <a href="<%= project.url %>">
+      <%= image_tag project.screenshots.first.desktop_image, alt: '', class: 'card-img-top' %>
+    </a>
+    <div class="card-body">
+      <h2 class="card-title h5">
+        <a href="<%= project.url %>">
+          <%= project.slug %>
+        </a>
+      </h2>
+    </div>
+  </div>
+</div>
