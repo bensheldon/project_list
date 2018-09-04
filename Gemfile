@@ -35,3 +35,7 @@ group :test do
   gem 'launchy', require: false
   gem 'rspec_junit_formatter'
 end
+
+group :production do
+  gem 'aws-sdk-s3', require: false
+end
