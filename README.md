@@ -1,24 +1,5 @@
-# README
+# Project List
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+**Website**: https://bensheldon-projectlist.herokuapp.com
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+**Project Backlog**: https://github.com/bensheldon/project_list/projects/1
