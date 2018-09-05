@@ -11,6 +11,7 @@ class ProjectsTasks
       desc 'Take all screenshots'
       task :screenshot => :environment do |t, args|
         Project.all.find_each do |project|
+          $stdout.puts "Generating screenshot for #{project.slug}"
           CreateProjectScreenshotJob.perform_now(project)
         end
       end
