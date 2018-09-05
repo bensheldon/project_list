@@ -1,20 +1,37 @@
 island94:
+  name: "Island 94"
   url: "https://island94.org"
+  description: |
+    A blog and commonplace book.
 dayoftheshirt:
+  name: "Day of the Shirt"
   url: "https://dayoftheshirt.com"
+  description: |
+    Daily t-shirt sales from 30+ websites in one place.
 panlexicon:
+  name: "Panlexicon"
   url: "https://panlexicon.com"
-project_list:
-  url: "https://bensheldon-projectlist.herokuapp.com"
+open311status:
+  name: "Open311 Status"
+  url: "https://status.open311.org"
 printandshare:
+  name: "Print and Share"
   url: "http://printandshare.org"
-civic_tech_patterns:
+civictechpatterns:
+  name: "Civic Tech Patterns"
   url: "https://github.com/codeforamerica/civic-tech-patterns"
 brompt:
+  name: "Brompt"
   url: "https://brompt.com"
 dayofthesock:
+  name: "Day of the Sock"
   url: "https://dayofthesock.com"
 sheldoncalderon:
+  name: "Sheldon Calderon"
   url: "http://sheldoncalderon.com"
 sflc:
+  name: "Saint Francis Lutheran Church"
   url: "http://sflcsf.org/"
+projectlist:
+  name: "Project List"
+  url: "https://projects.island94.org"
