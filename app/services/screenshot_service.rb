@@ -6,7 +6,7 @@ class ScreenshotService
 
   def call(url, device = :desktop)
     chrome_options = {
-      args: ['headless']
+      args: ['headless', 'hide-scrollbars']
     }
 
     # https://github.com/heroku/heroku-buildpack-google-chrome#selenium
