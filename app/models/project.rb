@@ -1,4 +1,5 @@
 class Project < ApplicationRecord
+  has_one :screenshot, -> { recent(1).with_attached_desktop_image }, class_name: 'Screenshot', inverse_of: :project
   has_many :screenshots
 
   class << self
@@ -6,7 +7,6 @@ class Project < ApplicationRecord
       self.where(slug: slug).first_or_create
     end
 
-    # Loads city configuration data into database
     def load!
       configs = Rails.configuration.projects
       configs.each do |slug, config|
@@ -18,7 +18,6 @@ class Project < ApplicationRecord
   def configuration
     @configuration ||= Configuration.new(Rails.configuration.projects[slug])
   end
-
 
   class Configuration
     include ActiveModel::Model
