@@ -23,7 +23,9 @@ class Project < ApplicationRecord
     include ActiveModel::Model
 
     ATTRIBUTES = [
-        :url
+        :name,
+        :url,
+        :description,
     ]
 
     attr_accessor *ATTRIBUTES

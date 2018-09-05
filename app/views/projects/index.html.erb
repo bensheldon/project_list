@@ -1,7 +1,9 @@
 <h1 class="display-3 text-center">Project List</h1>
 
 <div class="container">
-  <div class="row">
-    <%= render partial: 'project', collection: @projects, as: :project %>
+  <div class="projects">
+    <div class="row">
+      <%= render partial: 'project', collection: @projects, as: :project %>
+    </div>
   </div>
 </div>
