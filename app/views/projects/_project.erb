@@ -1,7 +1,7 @@
-<div class="col-sm-3">
+<div class="col-sm-3 mt-3 mb-3">
   <div class="card">
     <a href="<%= project.url %>">
-      <%= image_tag project.screenshots.first.desktop_image, alt: '', class: 'card-img-top' %>
+      <%= image_tag project&.screenshot&.desktop_image || '', alt: '', class: 'card-img-top' %>
     </a>
     <div class="card-body">
       <h2 class="card-title h5">

@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :project do
-    slug { 'example_project' }
+    slug 'project_list'
   end
 end
