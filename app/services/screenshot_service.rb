@@ -4,9 +4,12 @@ class ScreenshotService
   DESKTOP_DIMENSIONS = [1200, 800]
   MOBILE_DIMENSIONS = [375, 800]
 
+  LOAD_TIMEOUT = 5 # seconds
+  READ_TIMEOUT = 10 # seconds
+
   def call(url, device = :desktop)
     chrome_options = {
-      args: ['headless', 'hide-scrollbars']
+      args: ['headless', 'hide-scrollbars'],
     }
 
     # https://github.com/heroku/heroku-buildpack-google-chrome#selenium
@@ -14,9 +17,17 @@ class ScreenshotService
     chrome_options[:binary] = chrome_binary if chrome_binary.present?
 
     driver_options = Selenium::WebDriver::Chrome::Options.new(chrome_options)
-    driver = Selenium::WebDriver.for(:chrome, options: driver_options)
+    driver_capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(pageLoadStrategy: 'none')
+
+    http_client = Selenium::WebDriver::Remote::Http::Default.new
+    http_client.read_timeout = 5
+    
+    driver = Selenium::WebDriver.for(:chrome, desired_capabilities: driver_capabilities, options: driver_options, http_client: http_client)
+    driver.manage.timeouts.implicit_wait = 4 # seconds
+    driver.manage.timeouts.page_load = 3
 
     driver.navigate.to url
+    sleep 5
 
     if device == :desktop
       driver.manage.window.resize_to(*DESKTOP_DIMENSIONS)
@@ -28,7 +39,7 @@ class ScreenshotService
     driver.save_screenshot(tempfile.path)
     tempfile
   ensure
-    driver.close if driver
+    # driver.close if driver
   end
 
   private
