@@ -1,8 +1,15 @@
 <div class="col-md-6 col-lg-4 mt-3 mb-3">
   <div id="<%= dom_id(project) %>" class="card <%= dom_class(project) %>">
     <a href="<%= project.url %>">
-      <% if project&.screenshot&.desktop_image.present? %>
-        <%= image_tag rails_blob_path(project.screenshot.desktop_image), alt: '', class: 'card-img-top' %>
+      <% if project&.screenshot&.desktop_image.present? && project&.screenshot&.mobile_image.present? %>
+        <div class="card-screenshots">
+          <div class="card-screenshots-img" style="flex: <%= ScreenshotService::DESKTOP_DIMENSIONS[0].to_f / ScreenshotService::DESKTOP_DIMENSIONS[1] %>;">
+            <%= image_tag rails_blob_path(project.screenshot.desktop_image), alt: '', class: "img-fluid" %>
+          </div>
+          <div class="card-screenshots-img" style="flex: <%= ScreenshotService::MOBILE_DIMENSIONS[0].to_f / ScreenshotService::MOBILE_DIMENSIONS[1] %>;">
+            <%= image_tag rails_blob_path(project.screenshot.mobile_image), alt: '', class: "img-fluid" %>
+          </div>
+        </div>
       <% end %>
     </a>
     <div class="card-body">
