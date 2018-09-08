@@ -5,10 +5,12 @@ class ScreenshotService
   MOBILE_DIMENSIONS = [375, 800]
 
   DRIVER_IMPLICIT_WAIT = 5 # seconds
-  DRIVER_PAGE_LOAD_TIMEOUT = 5 # seconds
+  DRIVER_PAGE_LOAD_TIMEOUT = 25 # seconds
   DRIVER_READ_TIMEOUT = 30 # seconds
 
-  def call(url, device = :desktop)
+  def call(url, device = :desktop, wait_for_assets_to_load: true)
+    @wait_for_assets_to_load = wait_for_assets_to_load
+
     driver.navigate.to url
     wait_for_page_load
 
@@ -48,7 +50,8 @@ class ScreenshotService
   end
 
   def driver_capabilities
-    Selenium::WebDriver::Remote::Capabilities.chrome(pageLoadStrategy: 'none')
+    page_load_strategy = @wait_for_assets_to_load ? 'normal' : 'none'
+    Selenium::WebDriver::Remote::Capabilities.chrome(pageLoadStrategy: page_load_strategy)
   end
 
   def driver_http_client
@@ -65,7 +68,7 @@ class ScreenshotService
   end
 
   def wait_for_page_load
-    wait = Selenium::WebDriver::Wait.new(timeout: DRIVER_IMPLICIT_WAIT)
+    wait = Selenium::WebDriver::Wait.new(timeout: DRIVER_PAGE_LOAD_TIMEOUT)
     wait.until do
       driver.execute_script("return document.readyState") == "complete"
     end
