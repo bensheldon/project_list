@@ -1,6 +1,6 @@
 class Project < ApplicationRecord
   has_one :screenshot, -> { recent(1).with_attached_desktop_image }, class_name: 'Screenshot', inverse_of: :project
-  has_many :screenshots
+  has_many :screenshots, dependent: :destroy
 
   class << self
     def instance(slug)

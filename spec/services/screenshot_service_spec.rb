@@ -7,6 +7,10 @@ RSpec.describe ScreenshotService do
   before do
     allow(driver).to receive_message_chain("navigate.to")
     allow(driver).to receive_message_chain("manage.window.resize_to")
+    allow(driver).to receive_message_chain("manage.timeouts.implicit_wait=")
+    allow(driver).to receive_message_chain("manage.timeouts.page_load=")
+
+    allow(driver).to receive(:execute_script)
     allow(driver).to receive(:save_screenshot)
     allow(driver).to receive(:close)
   end
