@@ -26,10 +26,15 @@ class Project < ApplicationRecord
         :name,
         :url,
         :description,
+        :wait_for_assets_to_load,
     ]
 
     attr_accessor *ATTRIBUTES
   end
 
   delegate *self::Configuration::ATTRIBUTES, to: :configuration, allow_nil: true
+
+  def wait_for_assets_to_load
+    @wait_for_assets_to_load.nil? ? true : @wait_for_assets_to_load
+  end
 end

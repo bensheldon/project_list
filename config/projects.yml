@@ -14,6 +14,7 @@ panlexicon:
 open311status:
   name: "Open311 Status"
   url: "https://status.open311.org"
+  wait_for_assets_to_load: false
 printandshare:
   name: "Print and Share"
   url: "http://printandshare.org"
