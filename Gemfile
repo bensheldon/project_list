@@ -23,6 +23,7 @@ group :test do
   gem 'factory_bot_rails'
   gem 'launchy', require: false
   gem 'rspec_junit_formatter'
+  gem 'webmock'
 end
 
 group :development, :test do
