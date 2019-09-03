@@ -2,16 +2,16 @@ source 'https://rubygems.org'
 ruby_version = File.read(File.join(File.dirname(__FILE__), '.ruby-version')).strip
 ruby ruby_version
 
-gem 'bootsnap', '>= 1.1.0', require: false
-gem 'jbuilder', '~> 2.5'
+gem 'bootsnap', require: false
 gem 'kramdown'
 gem 'pg'
 gem 'pry-rails'
-gem 'puma', '~> 3.11'
-gem 'rails', '~> 5.2.2.rc1'
+gem 'puma'
+gem 'rails', '~> 5.2'
 gem 'selenium-webdriver'
+gem 'sentry-raven'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier'
 gem 'webpacker'
 
 group :production do
@@ -35,9 +35,9 @@ end
 
 group :development do
   gem 'annotate'
-  gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'listen'
   gem 'spring'
   gem 'spring-commands-rspec'
-  gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'web-console', '>= 3.3.0'
+  gem 'spring-watcher-listen'
+  gem 'web-console'
 end
