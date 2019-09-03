@@ -54,6 +54,21 @@ sflc:
   url: "http://sflcsf.org/"
   description: |
     An ELCA church in San Francisco's Castro where I am a member.
+transmissionproject:
+  name: "Transmission Project"
+  url: "http://transmissionproject.org"
+  description: |
+    The Transmission Project amplif[ied] the power of public media and technology.
+digitalartsservicecorps:
+  name: "Digital Arts Service Corps"
+  url: "http://digitalartscorps.org/"
+  description: |
+    AmeriCorps*VISTA program that buil[t] the capacity of public media and technology organizations.
+survivorsinc:
+  name: "Survivors Inc."
+  url: "http://survivorsinc.org/"
+  description: |
+    The voices of low-income women and publisher of Survival News.
 projectlist:
   name: "Project List"
   url: "https://projects.island94.org"
