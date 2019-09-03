@@ -1,3 +1,6 @@
+.card__project {
+  overflow: hidden;
+}
 .card-screenshots {
   display: flex;
   border-bottom: $card-border-width solid $card-border-color;

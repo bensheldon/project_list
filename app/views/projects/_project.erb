@@ -1,5 +1,5 @@
 <div class="col-md-6 col-lg-4 mt-3 mb-3">
-  <div id="<%= dom_id(project) %>" class="card <%= dom_class(project) %>">
+  <div id="<%= dom_id(project) %>" class="card card__project <%= dom_class(project) %>">
     <a href="<%= project.url %>">
       <% if project&.screenshot&.desktop_image.present? && project&.screenshot&.mobile_image.present? %>
         <div class="card-screenshots">
